@@ -78,7 +78,7 @@ export default async function handler(req, res) {
         <rect x="30" y="260" width="${(progress/100)*360}" height="20" rx="10" ry="10" class="progress-bar" />
 
         <text x="210" y="275" class="value" style="text-anchor: middle;">${progress}% Progress</text>
-        <text x="210" y="295" class="small">${remainingPercent}% to next rank</text>
+        
         </svg>
         `;
 
