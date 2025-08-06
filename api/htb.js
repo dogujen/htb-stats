@@ -20,7 +20,7 @@ export default async function handler(req, res) {
             }
         };
 
-        const apiRes = await fetch(`https://www.hackthebox.com/api/v4/profile/${id}`, options);
+        const apiRes = await fetch(`https://labs.hackthebox.com/api/v4/profile/${id}`, options);
         if (!apiRes.ok) {
             res.status(apiRes.status).send('Failed to fetch HTB profile');
             return;
