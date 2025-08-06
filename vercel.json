@@ -5,5 +5,13 @@
       "src": "api/htb.js",
       "use": "@vercel/node"
     }
+  ],
+   "redirects": [
+    {
+      "source": "/",
+      "destination": "https://github.com/dogujen/htb-stats",
+      "permanent": true
+    }
   ]
+
 }

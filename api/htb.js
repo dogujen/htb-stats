@@ -43,44 +43,69 @@ export default async function handler(req, res) {
 
         // Dinamik SVG stringi
         const svg = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="420" height="320" viewBox="0 0 420 320" style="background-color:#161b22; border-radius:16px;">
-        <style>
-        .title { fill: #9fef00; font-family: 'Fira Code', monospace; font-weight: bold; font-size: 20px; text-anchor: middle; }
-        .label { fill: #9fef00; font-family: 'Fira Code', monospace; font-size: 14px; }
-        .value { fill: #58d66d; font-family: 'Fira Code', monospace; font-size: 14px; text-anchor: end; }
-        .small { fill: #58d66d; font-family: 'Fira Code', monospace; font-size: 12px; text-anchor: middle; }
-        .progress-bg { fill: #30363d; rx: 10; ry: 10; }
-        .progress-bar { fill: #9fef00; rx: 10; ry: 10; }
-        </style>
+       <svg xmlns="http://www.w3.org/2000/svg" width="467" height="195" viewBox="0 0 467 195" fill="none">
+  <style>
+    .header {
+      font: 600 18px 'Fira Code', monospace;
+      fill: #9fef00;
+    }
+    .label {
+      font: 600 14px 'Fira Code', monospace;
+      fill: #9fef00;
+    }
+    .value {
+      font: 600 14px 'Fira Code', monospace;
+      fill: #58d66d;
+    }
+    .progress-bg {
+      fill: #30363d;
+    }
+    .progress-bar {
+      fill: #9fef00;
+    }
+  </style>
 
-        <rect width="420" height="320" rx="16" ry="16" fill="#161b22" />
-        <text x="210" y="40" class="title">🟢 HACK THE BOX STATUS</text>
+  <!-- Kart Arka Planı -->
+  <rect x="0.5" y="0.5" rx="4.5" width="466" height="194" fill="#161b22" stroke="#2f2f2f" />
 
-        <text x="30" y="80" class="label">👤 Username:</text>
-        <text x="390" y="80" class="value">${profile.name}</text>
+  <!-- Başlık -->
+  <g transform="translate(25, 35)">
+    <text class="header">🟢 HTB STATUS</text>
+  </g>
 
-        <text x="30" y="110" class="label">🧠 Points:</text>
-        <text x="390" y="110" class="value">${profile.points}</text>
+  <!-- Bilgiler -->
+  <g transform="translate(25, 60)">
+    <text class="label" x="0" y="0">👤 Username:</text>
+    <text class="value" x="420" y="0" text-anchor="end">${profile.name}</text>
+  </g>
+  <g transform="translate(25, 80)">
+    <text class="label" x="0" y="0">🧠 Points:</text>
+    <text class="value" x="420" y="0" text-anchor="end">${profile.points}</text>
+  </g>
+  <g transform="translate(25, 100)">
+    <text class="label" x="0" y="0">💻 System Owns:</text>
+    <text class="value" x="420" y="0" text-anchor="end">${profile.system_owns}</text>
+  </g>
+  <g transform="translate(25, 120)">
+    <text class="label" x="0" y="0">👥 User Owns:</text>
+    <text class="value" x="420" y="0" text-anchor="end">${profile.user_owns}</text>
+  </g>
+  <g transform="translate(25, 140)">
+    <text class="label" x="0" y="0">🎖️ Current Rank:</text>
+    <text class="value" x="420" y="0" text-anchor="end">${profile.rank}</text>
+  </g>
+  <g transform="translate(25, 160)">
+    <text class="label" x="0" y="0">⏭️ Next Rank:</text>
+    <text class="value" x="420" y="0" text-anchor="end">${profile.next_rank}</text>
+  </g>
 
-        <text x="30" y="140" class="label">💻 System Owns:</text>
-        <text x="390" y="140" class="value">${profile.system_owns}</text>
-
-        <text x="30" y="170" class="label">👥 User Owns:</text>
-        <text x="390" y="170" class="value">${profile.user_owns}</text>
-
-        <text x="30" y="200" class="label">🎖️ Current Rank:</text>
-        <text x="390" y="200" class="value">${profile.rank}</text>
-
-        <text x="30" y="230" class="label">⏭️ Next Rank:</text>
-        <text x="390" y="230" class="value">${profile.next_rank}</text>
-
-        <rect x="30" y="260" width="360" height="20" rx="10" ry="10" class="progress-bg" />
-        <rect x="30" y="260" width="${(progress/100)*360}" height="20" rx="10" ry="10" class="progress-bar" />
-
-        <text x="210" y="275" class="value" style="text-anchor: middle;">${progress}% Progress</text>
-        
-        </svg>
-        `;
+  <!-- İlerleme Çubuğu -->
+  <g transform="translate(25, 175)">
+    <rect width="417" height="10" class="progress-bg" rx="5" ry="5" />
+    <rect width="${(progress/100)*417}" height="10" class="progress-bar" rx="5" ry="5" />
+  </g>
+</svg>
+`;
 
         res.setHeader('Content-Type', 'image/svg+xml');
         res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate'); // Vercel için cache
